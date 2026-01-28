@@ -1,22 +1,30 @@
 package org.example;
 
 public class Asset {
-
+        private String name;
         private int code;
         private double prix;
         private int quantite;
         private String type_Actif;
 
 
-        public Asset(int code, double prix, int quantite, String type_Actif) {
+        public Asset(String name,int code, double prix,String type_Actif, int quantite) {
+           this.name = name;
             this.code = code;
             this.prix = prix;
             this.quantite = quantite;
             this.type_Actif = type_Actif;
         }
 
+    public String getName() {
+        return name;
+    }
 
-        public int getCode() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCode() {
             return code;
         }
 

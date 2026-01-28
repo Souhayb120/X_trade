@@ -4,28 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Portfolio<T> {
-    private int quantite;
-    private List<Asset> assetList;
 
-    public Portfolio(int quantite) {
-        this.quantite = quantite;
+    private List<T> assetList;
+
+    public Portfolio() {
         this.assetList = new ArrayList<>();
     }
 
 
-    public int getQuantite() {
-        return quantite;
-    }
 
-    public void setQuantite(int quantite) {
-        this.quantite = quantite;
-    }
 
-    public List<Asset> getAssetList() {
+    public List<T> getAssetList() {
         return assetList;
     }
 
-    public void setAssetList(List<Asset> assetList) {
+    public void setAssetList(List<T> assetList) {
         this.assetList = assetList;
     }
+
 }

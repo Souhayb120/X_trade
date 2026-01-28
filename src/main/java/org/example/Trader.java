@@ -5,12 +5,13 @@ import java.util.List;
 public class Trader extends Person{
     private int traderNum;
 private double sold_initial;
+private Portfolio portfolio;
 private List<Transaction> transactionList;
     public Trader(String nom, int age, int traderNum ) {
         super(nom, age);
         this.traderNum = traderNum;
         this.sold_initial = 0.0;
-
+        this.portfolio = new Portfolio<>();
     }
 
 
@@ -28,5 +29,20 @@ private List<Transaction> transactionList;
 
     public void setSold_initial(double sold_initial) {
         this.sold_initial = sold_initial;
+    }
+
+
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(Portfolio portfolio) {
+        this.portfolio = portfolio;
+    }
+
+    public void deposit(){
+    }
+
+    public void withdraw(){
     }
 }

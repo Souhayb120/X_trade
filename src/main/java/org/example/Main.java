@@ -5,7 +5,14 @@ public class Main {
 TradingPlatform tradingPlatform = new TradingPlatform("Ecrypto","www.ecrypto.com");
 
 tradingPlatform.add_Trader();
-tradingPlatform.afficher_Traders();
+//tradingPlatform.afficher_Traders();
+
+        tradingPlatform.add_Actif();
+
+        tradingPlatform.acheter_Actif();
+//        tradingPlatform.add_Actif();
+//
+//        tradingPlatform.afficher_Actif();
 
         }
     }

@@ -1,10 +1,8 @@
 package org.example;
 
 public class Stock extends Asset{
-    public Stock(int code, double prix, int quantite, String type_Actif) {
-        super(code, prix, quantite, type_Actif);
+
+    public Stock(String name, int code, double prix, String type_Actif, int quantite) {
+        super(name, code, prix, type_Actif, quantite);
     }
-
-
-
 }

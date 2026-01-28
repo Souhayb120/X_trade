@@ -83,7 +83,7 @@ public class TradingPlatform {
 
     }
 
-    // DISPLAY ACCOUNTS
+    // DISPLAY Traders
     public void afficher_Traders() {
         try {
             if (!traderlist.isEmpty()) {
@@ -99,4 +99,92 @@ public class TradingPlatform {
         }
 
     }
+
+
+    // Ajouter un actif
+    public void add_Actif() {
+        try {
+            System.out.println(" Enter  actif type:");
+            String type = sc.nextLine();
+            System.out.println(" Enter  actif name:");
+            String name = sc.nextLine();
+            System.out.println(" Enter actif code :");
+            int code = sc.nextInt();
+            System.out.println(" Enter actif Price :");
+            double price = sc.nextDouble();
+            System.out.println(" Enter quantite of this actif :");
+            int quantite = sc.nextInt();
+            sc.nextLine();
+            Asset asset = new Asset(name,code,price,type,quantite);
+            assetlist.add(asset);
+            System.out.println("Asset has added successfully");
+        } catch (Exception e) {
+            System.out.println("Errore : You have to enter a Number " + e);
+
+        }
+
+    }
+
+
+    // DISPLAY Actif
+    public void afficher_Actif() {
+        try {
+            if (!assetlist.isEmpty()) {
+                for (Asset asset : assetlist) {
+                    System.out.println("actif Name : " + asset.getName() + " ,Actif Code " + asset.getCode() + " ,Actif Price " + asset.getPrix() + " ,Actif Type " + asset.getType_Actif() + " ,Quantite " + asset.getQuantite());
+                }
+            } else {
+                System.out.println("no Actifs currently !!");
+            }
+        } catch (Exception e) {
+            System.out.println("somthing wrong Displaying Actifs !!!");
+            ;
+        }
+
+    }
+
+
+    // acheter un actif
+    public void acheter_Actif(){
+        System.out.println("enter your trading ID : ");
+        int Number = sc.nextInt();
+        Trader tr = null;
+        Asset asset = null;
+        for(Trader trader:traderlist){
+            if(Number == trader.getTraderNum()){
+                tr = trader;
+            }
+        }
+        if(tr != null){
+
+            for(int i = 0 ; i < assetlist.size() ; i++){
+                System.out.println((i + 1) + " " + assetlist.get(i).getName() + ", Code : " + assetlist.get(i).getCode()+" Quantite : " + assetlist.get(i).getQuantite() + ", Prix : " + assetlist.get(i).getPrix() + "$");
+            }
+            System.out.println("******************************");
+            System.out.println("enter number of actif u wanna buy :");
+            int choice = sc.nextInt();
+            for(int i = 0 ; i < assetlist.size() ; i++){
+                if(choice == assetlist.indexOf(assetlist.get(i))){
+                    asset = assetlist.get(i - 1);
+
+                }
+            }
+
+//            if(asset != null){
+//                System.out.println(asset.getName());
+//            }else{
+//                System.out.println("somthging fucking wrong");
+//            }
+
+
+        }
+
+
+
+    }
+
 }
+
+
+
+
