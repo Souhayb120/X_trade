@@ -1,6 +1,6 @@
 package org.example;
 
-public class Asset {
+public abstract class  Asset {
         private String name;
         private int code;
         private double prix;

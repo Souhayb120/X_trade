@@ -14,6 +14,13 @@ private List<Transaction> transactionList;
         this.portfolio = new Portfolio<>();
     }
 
+    public List<Transaction> getTransactionList() {
+        return transactionList;
+    }
+
+    public void setTransactionList(List<Transaction> transactionList) {
+        this.transactionList = transactionList;
+    }
 
     public int getTraderNum() {
         return traderNum;

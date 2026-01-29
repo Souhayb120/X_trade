@@ -115,6 +115,7 @@ public class TradingPlatform {
             System.out.println(" Enter quantite of this actif :");
             int quantite = sc.nextInt();
             sc.nextLine();
+
             Asset asset = new Asset(name,code,price,type,quantite);
             assetlist.add(asset);
             System.out.println("Asset has added successfully");
@@ -160,21 +161,24 @@ public class TradingPlatform {
             for(int i = 0 ; i < assetlist.size() ; i++){
                 System.out.println((i + 1) + " " + assetlist.get(i).getName() + ", Code : " + assetlist.get(i).getCode()+" Quantite : " + assetlist.get(i).getQuantite() + ", Prix : " + assetlist.get(i).getPrix() + "$");
             }
-            System.out.println("******************************");
-            System.out.println("enter number of actif u wanna buy :");
-            int choice = sc.nextInt();
-            for(int i = 0 ; i < assetlist.size() ; i++){
-                if(choice == assetlist.indexOf(assetlist.get(i))){
-                    asset = assetlist.get(i - 1);
+            try{
+                System.out.println("******************************");
+                System.out.println("enter number of actif u wanna buy :");
+                int choice = sc.nextInt();
+                for(Asset ast : assetlist){
+                    if(choice == assetlist.indexOf(ast) + 1){
+                        asset = ast;
+                        System.out.println("you choose " + asset.getName());
+                    }
+                }
+
+                if(asset != null){
 
                 }
+            } catch (Exception e) {
+                System.out.println("errore" + e);
             }
 
-//            if(asset != null){
-//                System.out.println(asset.getName());
-//            }else{
-//                System.out.println("somthging fucking wrong");
-//            }
 
 
         }

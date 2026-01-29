@@ -5,21 +5,23 @@ import java.util.List;
 
 public class Portfolio<T> {
 
-    private List<T> assetList;
+    private List<Stock> stocktList;
+    private List<CryptoCurrency> cryptoList;
 
-    public Portfolio() {
-        this.assetList = new ArrayList<>();
+
+    public List<Stock> getStocktList() {
+        return stocktList;
     }
 
-
-
-
-    public List<T> getAssetList() {
-        return assetList;
+    public void setStocktList(List<Stock> stocktList) {
+        this.stocktList = stocktList;
     }
 
-    public void setAssetList(List<T> assetList) {
-        this.assetList = assetList;
+    public List<CryptoCurrency> getCryptoList() {
+        return cryptoList;
     }
 
+    public void setCryptoList(List<CryptoCurrency> cryptoList) {
+        this.cryptoList = cryptoList;
+    }
 }
