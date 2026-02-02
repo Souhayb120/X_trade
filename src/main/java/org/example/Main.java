@@ -25,8 +25,6 @@ public class Main {
                 case 2 :
                     traderMenu();
                     break;
-                case 3 :
-                    break;
                 default:
                     System.out.println("invalid Input !!");
                     break;
@@ -49,7 +47,8 @@ public class Main {
             System.out.println("2. Ajouter un Trader");
             System.out.println("3. Afficher Actifs");
             System.out.println("4. Ajouter Actif");
-            System.out.println("5. Close");
+            System.out.println("5. Afficher Historique Transactions");
+            System.out.println("5. Go back Home");
             System.out.println("#################################################");
             System.out.println("Make ur choise : ");
             choice = Integer.parseInt(sc.nextLine());
@@ -66,6 +65,12 @@ public class Main {
                 case 4:
                    tradingPlatform.add_Actif();
                     break;
+                case 5:
+                   tradingPlatform.display_Transactions();
+                    break;
+                case 6:
+                    x_Trade();
+                    break;
                 default:
                     System.out.println("invalid Input !!");
                     break;
@@ -73,7 +78,6 @@ public class Main {
 
         } while (choice != 0);
     };
-
 
 
     // Trader MENU
@@ -87,7 +91,7 @@ public class Main {
             System.out.println("3. achter un actif");
             System.out.println("4. vendre un actif");
             System.out.println("5. Afficher portfolio");
-            System.out.println("6. Close");
+            System.out.println("6. get back Home");
             System.out.println("#################################################");
             System.out.println("Make ur choise : ");
             choice = Integer.parseInt(sc.nextLine());
@@ -101,6 +105,15 @@ public class Main {
                 case 3:
                     tradingPlatform.acheter_Actif();
                     break;
+                case 4:
+                    tradingPlatform.vendre_Actif();
+                    break;
+                case 5:
+                    tradingPlatform.afficher_Trader_Transaction();
+                    break;
+                case 6:
+                    x_Trade();
+                    break;
                 default:
                     System.out.println("invalid Input !!");
                     break;
@@ -109,8 +122,9 @@ public class Main {
         } while (choice != 0);
     };
     public static void main(String[] args) {
-
-x_Trade();
+        //*********************************************
+          x_Trade();
+        //*********************************************
 
         }
     }

@@ -6,21 +6,14 @@ public class Trader extends Person{
     private int traderNum;
 private double sold_initial;
 private Portfolio portfolio;
-private List<Transaction> transactionList;
+
     public Trader(String nom, int age, int traderNum ) {
         super(nom, age);
         this.traderNum = traderNum;
         this.sold_initial = 0.0;
-        this.portfolio = new Portfolio<>();
+        this.portfolio = new Portfolio(this);
     }
 
-    public List<Transaction> getTransactionList() {
-        return transactionList;
-    }
-
-    public void setTransactionList(List<Transaction> transactionList) {
-        this.transactionList = transactionList;
-    }
 
     public int getTraderNum() {
         return traderNum;

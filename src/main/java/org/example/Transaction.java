@@ -1,5 +1,7 @@
 package org.example;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -9,15 +11,30 @@ public class Transaction {
     private double prix;
     private String type;
     private int quantite;
-    private Date date;
-    private List<Asset> assetList;
-
-    public Transaction(double prix, String type, int quantite, Date date) {
+    private Asset asset;
+     LocalDateTime myObj ;
+    public Transaction(String type ,double prix,  int quantite ,Asset asset) {
         this.prix = prix;
         this.type = type;
         this.quantite = quantite;
-        this.date = date;
-        this.assetList = new ArrayList<>();
+        this.myObj = LocalDateTime.now();
+        this.asset = asset;
+    }
+
+    public Asset getAsset() {
+        return asset;
+    }
+
+    public void setAsset(Asset asset) {
+        this.asset = asset;
+    }
+
+    public LocalDateTime getMyObj() {
+        return myObj;
+    }
+
+    public void setMyObj(LocalDateTime myObj) {
+        this.myObj = myObj;
     }
 
     public double getPrix() {
@@ -43,16 +60,6 @@ public class Transaction {
     public void setQuantite(int quantite) {
         this.quantite = quantite;
     }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-
 
 
 
