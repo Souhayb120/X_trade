@@ -7,12 +7,11 @@ public class TradingPlatform {
     private String web_Adress;
     private List<Trader> traderlist;
     private List<Transaction> transactionlist;
-    private List<Asset> assetlist;
+    private List<Asset> assetlist = new ArrayList<>();
 
     public TradingPlatform(String name, String web_Adress) {
         this.name = name;
         this.web_Adress = web_Adress;
-        this.assetlist =  new ArrayList<>();
         this.traderlist =  new ArrayList<>();
         this.transactionlist =  new ArrayList<>();
 
@@ -58,9 +57,11 @@ public class TradingPlatform {
         this.assetlist = assetlist;
     }
 
-
-
     Scanner sc = new Scanner(System.in);
+
+    //***************************
+    // Admin Methods
+    //***************************
 
     // Ajouter un Trader
     public void add_Trader() {
@@ -100,7 +101,6 @@ public class TradingPlatform {
 
     }
 
-
     // Ajouter un actif
     public void add_Actif() {
         try {
@@ -115,17 +115,25 @@ public class TradingPlatform {
             System.out.println(" Enter quantite of this actif :");
             int quantite = sc.nextInt();
             sc.nextLine();
+if(type.equals("stock")){
+    Stock stock = new Stock(name,code,price,type,quantite);
+    assetlist.add(stock);
+    System.out.println("Stock has added successfully");
+}else if(type.equals("crypto")){
+    CryptoCurrency crypto = new CryptoCurrency(name,code,price,type,quantite);
+    assetlist.add(crypto);
+    System.out.println("Crypto has added successfully");
+}else{
+    System.out.println("type invalid !!");
+}
 
-            Asset asset = new Asset(name,code,price,type,quantite);
-            assetlist.add(asset);
-            System.out.println("Asset has added successfully");
+
         } catch (Exception e) {
             System.out.println("Errore : You have to enter a Number " + e);
 
         }
 
     }
-
 
     // DISPLAY Actif
     public void afficher_Actif() {
@@ -141,11 +149,15 @@ public class TradingPlatform {
             System.out.println("somthing wrong Displaying Actifs !!!");
             ;
         }
-
     }
 
 
-    // acheter un actif
+
+    //***************************
+    // Trader Methods
+    //****************************
+
+ // acheter un actif
     public void acheter_Actif(){
         System.out.println("enter your trading ID : ");
         int Number = sc.nextInt();
@@ -185,6 +197,53 @@ public class TradingPlatform {
 
 
 
+    }
+// deposit argents
+    public void deposit(){
+        System.out.println("enter your trading Number");
+        int Number = sc.nextInt();
+        Trader trader = null;
+        for(Trader trader1 : traderlist){
+            if(trader1.getTraderNum() == Number){
+                trader = trader1;
+            }
+        }
+        if(trader != null){
+            System.out.println("how much you wanna deposit ");
+            double montant = sc.nextDouble();
+            trader.setSold_initial(montant);
+            System.out.println("Operation Made successfully !!");
+            System.out.println("your new balance is " + montant + "$");
+        }else {
+            System.out.println("somthing wrong deposit money");
+        }
+    }
+// withdraw argents
+    public void withdraw(){
+        System.out.println("enter your trading Number");
+        int Number = sc.nextInt();
+        Trader trader = null;
+        for(Trader trader1 : traderlist){
+            if(trader1.getTraderNum() == Number){
+                trader = trader1;
+            }
+        }
+        if(trader != null){
+            System.out.println("how much you wanna Withdraw ");
+            double montant = sc.nextDouble();
+            if(montant > trader.getSold_initial()){
+                System.out.println("votre sold est insuffusant!!");
+            }else if(montant > 1){
+                System.out.println("vous entrer une null valeur!!");
+            }
+            else{
+                trader.setSold_initial(montant);
+                System.out.println("Operation Made successfully !!");
+                System.out.println("your withdraw " + montant + "$");
+            }
+        }else {
+            System.out.println("trader not found");
+        }
     }
 
 }

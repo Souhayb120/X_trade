@@ -47,9 +47,5 @@ private List<Transaction> transactionList;
         this.portfolio = portfolio;
     }
 
-    public void deposit(){
-    }
 
-    public void withdraw(){
-    }
 }
