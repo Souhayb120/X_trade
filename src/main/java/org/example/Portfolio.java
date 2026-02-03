@@ -20,7 +20,7 @@ public class Portfolio {
         transactions.add(transaction);
     }
 
-    public Map<String, Integer> getMap() {
+    public Map<String , Integer> getMap() {
         return map;
     }
 

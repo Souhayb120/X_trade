@@ -221,6 +221,7 @@ public void display_Transactions() {
                         tr.setSold_initial(tr.getSold_initial() - asset.getPrix());
                         asset.setQuantite(asset.getQuantite() - 1);
                         tr.getPortfolio().setMap(asset.getType_Actif(),asset.getQuantite());
+
                         System.out.println("Operation made Successfully !!");
                         System.out.println("your current sold is " + tr.getSold_initial());
                     }else{
