@@ -12,12 +12,12 @@ public class Transaction {
     private String type;
     private int quantite;
     private Asset asset;
-     LocalDateTime myObj ;
+     LocalDateTime date ;
     public Transaction(String type ,double prix,  int quantite ,Asset asset) {
         this.prix = prix;
         this.type = type;
         this.quantite = quantite;
-        this.myObj = LocalDateTime.now();
+        this.date = LocalDateTime.now();
         this.asset = asset;
     }
 
@@ -29,12 +29,12 @@ public class Transaction {
         this.asset = asset;
     }
 
-    public LocalDateTime getMyObj() {
-        return myObj;
+    public LocalDateTime getDate() {
+        return date;
     }
 
     public void setMyObj(LocalDateTime myObj) {
-        this.myObj = myObj;
+        this.date = myObj;
     }
 
     public double getPrix() {

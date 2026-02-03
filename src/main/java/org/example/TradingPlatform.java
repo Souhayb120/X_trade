@@ -165,7 +165,7 @@ public void display_Transactions() {
                 System.out.println("Type " + transaction.getType());
                 System.out.println("Name " + transaction.getAsset().getName());
                 System.out.println("Prix " + transaction.getAsset().getPrix());
-                System.out.println("Date " + transaction.getMyObj());
+                System.out.println("Date " + transaction.getDate());
                 System.out.println("Quantite " + transaction.getQuantite());
                 System.out.println("*******************************************************************");
             }
@@ -220,6 +220,7 @@ public void display_Transactions() {
                         transactionlist.add(transaction);
                         tr.setSold_initial(tr.getSold_initial() - asset.getPrix());
                         asset.setQuantite(asset.getQuantite() - 1);
+                        tr.getPortfolio().setMap(asset.getType_Actif(),asset.getQuantite());
                         System.out.println("Operation made Successfully !!");
                         System.out.println("your current sold is " + tr.getSold_initial());
                     }else{
@@ -243,7 +244,7 @@ public void display_Transactions() {
         int Number = sc.nextInt();
         sc.nextLine();
         Trader tr = null;
-        Asset asset = null;
+        Transaction transaction = null;
         for(Trader trader:traderlist){
             if(Number == trader.getTraderNum()){
                 tr = trader;
@@ -251,30 +252,28 @@ public void display_Transactions() {
         }
         if(tr != null){
             for(int i = 0 ; i < tr.getPortfolio().getT().size() ; i++){
-                System.out.println((i + 1) + " " + tr.getPortfolio()+ ", Code : " + assetlist.get(i).getCode()+" Quantite : " + assetlist.get(i).getQuantite() + ", Prix : " + assetlist.get(i).getPrix() + "$");
+                System.out.println((i + 1) + tr.getPortfolio().getT().get(i).getAsset().getName() +  " Quantite " + tr.getPortfolio().getT().get(i).getQuantite() + " Prix " + tr.getPortfolio().getT().get(i).getPrix() + " Code " + tr.getPortfolio().getT().get(i).getAsset().getCode());
             }
             try{
                 System.out.println("******************************");
                 System.out.println("enter number of actif u wanna Sold :");
                 int choice = sc.nextInt();
                 sc.nextLine();
-                for(Asset ast : assetlist){
-                    if(choice == assetlist.indexOf(ast) + 1){
-                        asset = ast;
-                        System.out.println("you sold " + asset.getName());
+                for(Transaction transaction1 : tr.getPortfolio().getT()){
+                    if(choice == tr.getPortfolio().getT().indexOf(transaction1) + 1){
+                        transaction = transaction1;
+                        System.out.println("you sold " + transaction.getAsset().getName());
                     }
                 }
-                if(asset != null){
+                if(transaction != null){
 
-                        Transaction transaction = new Transaction("Sold",asset.getPrix(),asset.getQuantite(),asset);
+
                         tr.getPortfolio().addTransaction(transaction);
                         transactionlist.add(transaction);
-                        tr.setSold_initial(tr.getSold_initial() + asset.getPrix());
-                        asset.setQuantite(asset.getQuantite() - 1);
+                        tr.setSold_initial(tr.getSold_initial() + transaction.getPrix());
+                        transaction.setQuantite(transaction.getQuantite() - 1);
                         System.out.println("Operation made Successfully !!");
                         System.out.println("your current sold is " + tr.getSold_initial());
-
-
                 }else {
                     System.out.println("out of stock !!");
                 }
