@@ -2,6 +2,8 @@ package org.example;
 import  java.util.List;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.stream.Stream;
+
 public class TradingPlatform {
     private String name;
     private String web_Adress;
@@ -215,7 +217,7 @@ public void display_Transactions() {
                 }
                 if(asset != null){
                     if(tr.getSold_initial() >= asset.getPrix()){
-                        Transaction transaction = new Transaction("BUY",asset.getPrix(),asset.getQuantite(),asset);
+                        Transaction transaction = new Transaction("BUY",asset.getPrix(),asset.getQuantite(),asset,tr);
                         tr.getPortfolio().addTransaction(transaction);
                         transactionlist.add(transaction);
                         tr.setSold_initial(tr.getSold_initial() - asset.getPrix());
@@ -332,6 +334,7 @@ public void display_Transactions() {
     public void withdraw(){
         System.out.println("enter your trading Number");
         int Number = sc.nextInt();
+
         Trader trader = null;
         for(Trader trader1 : traderlist){
             if(trader1.getTraderNum() == Number){
@@ -355,7 +358,30 @@ public void display_Transactions() {
             System.out.println("trader not found");
         }
     }
+
    //*******************************
+
+
+
+// ************************* PART 2 **********************
+
+
+
+    // 1 : ***********************************************
+    // Afficher toutes les transactions d’un trader donné :
+
+public void transaction_de_Trader(){
+    System.out.println("enter ur Trading Number ");
+    int number = sc.nextInt();
+    sc.nextLine();
+        transactionlist.stream()
+                .filter(tr -> tr.getTrader().getTraderNum() == number)
+                .forEach(System.out::println);
+}
+
+    // ***************************************************
+
+
 
 }
 

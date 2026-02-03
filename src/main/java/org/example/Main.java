@@ -123,7 +123,15 @@ public class Main {
     };
     public static void main(String[] args) {
         //*********************************************
-          x_Trade();
+        tradingPlatform.add_Trader();
+        tradingPlatform.add_Trader();
+        tradingPlatform.add_Actif();
+        tradingPlatform.deposit();
+        tradingPlatform.acheter_Actif();
+        tradingPlatform.deposit();
+        tradingPlatform.acheter_Actif();
+        tradingPlatform.transaction_de_Trader();
+        tradingPlatform.transaction_de_Trader();
         //*********************************************
 
         }

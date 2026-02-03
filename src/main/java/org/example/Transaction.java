@@ -13,12 +13,22 @@ public class Transaction {
     private int quantite;
     private Asset asset;
      LocalDateTime date ;
-    public Transaction(String type ,double prix,  int quantite ,Asset asset) {
+     private Trader trader;
+    public Transaction(String type ,double prix,  int quantite ,Asset asset , Trader trader) {
         this.prix = prix;
         this.type = type;
         this.quantite = quantite;
         this.date = LocalDateTime.now();
         this.asset = asset;
+        this.trader = trader;
+    }
+
+    public Trader getTrader() {
+        return trader;
+    }
+
+    public void setTrader(Trader trader) {
+        this.trader = trader;
     }
 
     public Asset getAsset() {
@@ -62,5 +72,15 @@ public class Transaction {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "prix=" + prix +
+                ", type='" + type + '\'' +
+                ", quantite=" + quantite +
+                ", asset=" + asset +
+                ", date=" + date +
+                ", trader=" + trader +
+                '}';
+    }
 }
