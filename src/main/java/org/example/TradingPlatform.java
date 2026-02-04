@@ -1,8 +1,12 @@
 package org.example;
+import java.time.LocalDate;
 import  java.util.List;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Scanner;
-import java.util.stream.Stream;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 
 public class TradingPlatform {
     private String name;
@@ -320,11 +324,16 @@ public void display_Transactions() {
         if(trader != null){
             System.out.println("how much you wanna deposit ");
             double montant = sc.nextDouble();
-            trader.setSold_initial(montant);
-            System.out.println("Operation Made successfully !!");
-            System.out.println("your new balance is " + montant + "$");
+            if(montant > 1){
+                trader.setSold_initial(montant);
+                System.out.println("Operation Made successfully !!");
+                System.out.println("your new balance is " + montant + "$");
+            }else{
+                System.out.println("you tryied to enter a null value !!");
+            }
+
         }else {
-            System.out.println("somthing wrong deposit money");
+            System.out.println("trader not found !!!");
         }
     }
     //******************************
@@ -366,11 +375,8 @@ public void display_Transactions() {
 // ************************* PART 2 **********************
 
 
-
-    // 1 : ***********************************************
     // Afficher toutes les transactions d’un trader donné :
-
-public void transaction_de_Trader(){
+    public void transaction_de_Trader(){
     System.out.println("enter ur Trading Number ");
     int number = sc.nextInt();
     sc.nextLine();
@@ -378,13 +384,65 @@ public void transaction_de_Trader(){
                 .filter(tr -> tr.getTrader().getTraderNum() == number)
                 .forEach(System.out::println);
 }
+    // ***************************************************
 
+
+    // Filtrer les transactions par : type (BUY / SELL) :
+    public void filter_Transaction() {
+        try{
+        System.out.println("enter Transaction Type : ");
+        String type = sc.nextLine();
+        System.out.println("enter Assest Name : ");
+        String name = sc.nextLine();
+        System.out.println("enter Star Date : ");
+        String dateStart = sc.nextLine();
+        System.out.println("enter End Date : ");
+        String dateEnd = sc.nextLine();
+        LocalDate date1 = LocalDate.parse(dateStart);
+        LocalDate date2 = LocalDate.parse(dateEnd);
+        List<Transaction> listOfLists = transactionlist.stream()
+                            .filter(tr -> tr.getType().equals(type))
+                            .filter(tr -> tr.getAsset().getName().equals(name))
+                            .filter(tr -> !tr.getDate().isBefore(date1) && !tr.getDate().isAfter(date2)).toList();
+                    listOfLists.parallelStream().forEach(System.out::println);
+                } catch (Exception e) {
+            System.out.println("invalid input " + e);
+                }
+}
+    // ***************************************************
+
+
+    // Trier les transactions par : date, montant :
+    public void filter_Transaction_BY_Date_Montant(){
+        System.out.println("enter Star Date : ");
+        String date = sc.nextLine();
+        System.out.println("enter Montant : $ ");
+        double montant = sc.nextDouble();
+        sc.nextLine();
+        LocalDate date1 = LocalDate.parse(date);
+        try{
+            List<Transaction> trierTransaction = transactionlist.stream()
+                    .filter(tr -> tr.getDate().isEqual(date1))
+                    .filter(tr -> tr.getPrix() == montant).toList();
+            trierTransaction.forEach(System.out::println);
+        } catch (Exception e) {
+            System.out.println("Item Not Found !!" + e);
+        }
+    }
+    // ***************************************************
+
+
+    //Calculer : le volume total échangé par actif, le montant total des achats et des ventes :
+    public void calc_Volume_Total_par_Actif(){
+        //Map<String,Integer> ls = transactionlist.stream()
+
+
+    }
     // ***************************************************
 
 
 
 }
-
 
 
 

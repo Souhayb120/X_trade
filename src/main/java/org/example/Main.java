@@ -1,5 +1,6 @@
 package org.example;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
 public class Main {
@@ -77,7 +78,7 @@ public class Main {
             }
 
         } while (choice != 0);
-    };
+    }
 
 
     // Trader MENU
@@ -120,18 +121,14 @@ public class Main {
             }
 
         } while (choice != 0);
-    };
-    public static void main(String[] args) {
+    }
+    public static void main(String[] args) throws ParseException {
         //*********************************************
-        tradingPlatform.add_Trader();
         tradingPlatform.add_Trader();
         tradingPlatform.add_Actif();
         tradingPlatform.deposit();
         tradingPlatform.acheter_Actif();
-        tradingPlatform.deposit();
-        tradingPlatform.acheter_Actif();
-        tradingPlatform.transaction_de_Trader();
-        tradingPlatform.transaction_de_Trader();
+
         //*********************************************
 
         }

@@ -40,5 +40,12 @@ private Portfolio portfolio;
         this.portfolio = portfolio;
     }
 
-
+    @Override
+    public String toString() {
+        return "Trader{" +
+                "traderNum=" + traderNum +
+                ", sold_initial=" + sold_initial +
+                ", portfolio=" + portfolio +
+                '}';
+    }
 }

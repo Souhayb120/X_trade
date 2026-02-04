@@ -55,6 +55,17 @@ public abstract class  Asset {
         public void setType_Actif(String type_Actif) {
             this.type_Actif = type_Actif;
         }
+
+    @Override
+    public String toString() {
+        return "Asset{" +
+                "name='" + name + '\'' +
+                ", code=" + code +
+                ", prix=" + prix +
+                ", quantite=" + quantite +
+                ", type_Actif='" + type_Actif + '\'' +
+                '}';
     }
+}
 
 
