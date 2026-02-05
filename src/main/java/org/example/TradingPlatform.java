@@ -1,11 +1,10 @@
 package org.example;
 import java.time.LocalDate;
-import  java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Scanner;
+import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.Stream;
 
 
 public class TradingPlatform {
@@ -123,7 +122,7 @@ public class TradingPlatform {
             double price = sc.nextDouble();
             sc.nextLine();
             System.out.println(" Enter quantite of this actif :");
-            int quantite = sc.nextInt();
+            double quantite = sc.nextDouble();
             sc.nextLine();
 if(type.equals("stock")){
     Stock stock = new Stock(name,code,price,type,quantite);
@@ -432,16 +431,43 @@ public void display_Transactions() {
     // ***************************************************
 
 
+
     //Calculer : le volume total échangé par actif, le montant total des achats et des ventes :
-    public void calc_Volume_Total_par_Actif(){
-        //Map<String,Integer> ls = transactionlist.stream()
+    public void  calcVolumeParActif(){
+        // clc volume actif
+
+        Map<String, Long> countByAsset = transactionlist.stream()
+                .collect(Collectors.groupingBy(
+                        t -> t.getAsset().getName(),
+                        Collectors.counting()
+                ));
+        //Map<String,Double> tt = transactionlist.stream()
+       //.collect(Collectors.groupingBy(transaction -> transaction.getQuantite() * transaction.getPrix()));
 
 
+
+
+        System.out.println("******* Volume Traded per Asset *******");
+        System.out.println(countByAsset);
     }
     // ***************************************************
 
 
 
+
+
+    // Part 2 Brief 2
+
+    //Calcul du volume total échangé par trader
+    public void CalculVolumeParTrader(){
+        Map<String, Long> countByAsset = transactionlist.stream()
+                .collect(Collectors.groupingBy(
+                        t -> t.getTrader().getNom(),
+                        Collectors.counting()
+                ));
+        System.out.println(countByAsset);
+    }
+    //******************************************
 }
 
 

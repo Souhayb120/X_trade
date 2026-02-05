@@ -10,11 +10,11 @@ import java.util.Scanner;
 public class Transaction {
     private double prix;
     private String type;
-    private int quantite;
+    private double quantite;
     private Asset asset;
      LocalDate date ;
      private Trader trader;
-    public Transaction(String type ,double prix,  int quantite ,Asset asset , Trader trader) {
+    public Transaction(String type ,double prix,  double quantite ,Asset asset , Trader trader) {
         this.prix = prix;
         this.type = type;
         this.quantite = quantite;
@@ -63,11 +63,11 @@ public class Transaction {
         this.type = type;
     }
 
-    public int getQuantite() {
+    public double getQuantite() {
         return quantite;
     }
 
-    public void setQuantite(int quantite) {
+    public void setQuantite(double quantite) {
         this.quantite = quantite;
     }
 

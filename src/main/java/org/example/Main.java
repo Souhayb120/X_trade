@@ -128,6 +128,8 @@ public class Main {
         tradingPlatform.add_Actif();
         tradingPlatform.deposit();
         tradingPlatform.acheter_Actif();
+        tradingPlatform.vendre_Actif();
+        tradingPlatform.afficher_Trader_Transaction();
 
         //*********************************************
 

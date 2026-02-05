@@ -24,7 +24,7 @@ public class Portfolio {
         return map;
     }
 
-    public void setMap(String typeActif, int quantite) {
+    public void setMap(String typeActif, double quantite) {
     }
 
     public List<Transaction> getT(){
