@@ -126,10 +126,12 @@ public class Main {
         //*********************************************
         tradingPlatform.add_Trader();
         tradingPlatform.add_Actif();
+        tradingPlatform.add_Actif();
         tradingPlatform.deposit();
         tradingPlatform.acheter_Actif();
+        tradingPlatform.acheter_Actif();
         tradingPlatform.vendre_Actif();
-        tradingPlatform.afficher_Trader_Transaction();
+        tradingPlatform.Calc_total_ordres_passes();
 
         //*********************************************
 

@@ -413,17 +413,11 @@ public void display_Transactions() {
 
     // Trier les transactions par : date, montant :
     public void filter_Transaction_BY_Date_Montant(){
-        System.out.println("enter Star Date : ");
-        String date = sc.nextLine();
-        System.out.println("enter Montant : $ ");
-        double montant = sc.nextDouble();
-        sc.nextLine();
-        LocalDate date1 = LocalDate.parse(date);
         try{
             List<Transaction> trierTransaction = transactionlist.stream()
-                    .filter(tr -> tr.getDate().isEqual(date1))
-                    .filter(tr -> tr.getPrix() == montant).toList();
-            trierTransaction.forEach(System.out::println);
+                    .sorted(Comparator.comparing(Transaction::getPrix).reversed())
+                    .sorted(Comparator.comparing(Transaction::getDate)).toList();
+                     trierTransaction.forEach(System.out::println);
         } catch (Exception e) {
             System.out.println("Item Not Found !!" + e);
         }
@@ -434,21 +428,9 @@ public void display_Transactions() {
 
     //Calculer : le volume total échangé par actif, le montant total des achats et des ventes :
     public void  calcVolumeParActif(){
-        // clc volume actif
-
-        Map<String, Long> countByAsset = transactionlist.stream()
-                .collect(Collectors.groupingBy(
-                        t -> t.getAsset().getName(),
-                        Collectors.counting()
-                ));
-        //Map<String,Double> tt = transactionlist.stream()
-       //.collect(Collectors.groupingBy(transaction -> transaction.getQuantite() * transaction.getPrix()));
 
 
 
-
-        System.out.println("******* Volume Traded per Asset *******");
-        System.out.println(countByAsset);
     }
     // ***************************************************
 
@@ -459,15 +441,45 @@ public void display_Transactions() {
     // Part 2 Brief 2
 
     //Calcul du volume total échangé par trader
-    public void CalculVolumeParTrader(){
-        Map<String, Long> countByAsset = transactionlist.stream()
-                .collect(Collectors.groupingBy(
-                        t -> t.getTrader().getNom(),
-                        Collectors.counting()
-                ));
-        System.out.println(countByAsset);
+    public void CalculVolumeParTrader() {
+        Map<String, Double> totalPerPerson =
+                transactionlist.stream()
+                        .collect(Collectors.groupingBy(
+                                transaction -> transaction.getTrader().getNom(),
+                                Collectors.summingDouble(Transaction::getQuantite)
+                        ));
+        System.out.println(totalPerPerson);
+
+
     }
     //******************************************
+
+
+
+    //Calc_total_ordres_passes
+    public void Calc_total_ordres_passes(){
+       long count = transactionlist.size();
+        System.out.println("total orders passee est : " + count + " Orders");
+    }
+    //******************************************
+
+
+    //Classement des traders par volume (top N traders)
+    public void top_N_Traders(){
+        System.out.println("Enter Number of the Top Traders you want to Display : ");
+        int n = sc.nextInt();
+        sc.nextLine();
+
+
+
+
+
+
+
+    }
+
+
+
 }
 
 
