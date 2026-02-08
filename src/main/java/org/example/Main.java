@@ -13,7 +13,8 @@ public class Main {
             System.out.println("##################### X-Trade #####################");
             System.out.println("1. Admin Mode");
             System.out.println("2. Client Mode");
-            System.out.println("3. Close");
+            System.out.println("3. Gestion Filtrage and trier");
+            System.out.println("4. Close");
             System.out.println("###################################################");
             System.out.println("Make ur choise : ");
             choice = sc.nextInt();
@@ -26,6 +27,9 @@ public class Main {
                 case 2 :
                     traderMenu();
                     break;
+                case 3 :
+                    gestion_filtrage();
+                    break;
                 default:
                     System.out.println("invalid Input !!");
                     break;
@@ -36,7 +40,47 @@ public class Main {
 
     }
 
+    public static void gestion_filtrage(){
+        Scanner sc = new Scanner(System.in);
+        int choice;
+        do{
+            System.out.println("##################### Gestion Filtrage and trier #####################");
+            System.out.println("1. transaction de Trader");
+            System.out.println("2. Filtrer les transactions par : type (BUY / SELL)");
+            System.out.println("3. Trier les transactions par : date, montant");
+            System.out.println("4. Calcul du volume total échangé par trader");
+            System.out.println("5. Calc_total_ordres_passes");
+            System.out.println("6. Close");
+            System.out.println("###################################################");
+            System.out.println("Make ur choise : ");
+            choice = sc.nextInt();
+            sc.nextLine();
 
+            switch (choice){
+                case 1 :
+                    tradingPlatform.transaction_de_Trader();
+                    break;
+                case 2 :
+                   tradingPlatform.filter_Transaction();
+                    break;
+                case 3 :
+                   tradingPlatform.filter_Transaction_BY_Date_Montant();
+                    break;
+                case 4:
+                    tradingPlatform.calcVolumeParActif();
+                    break;
+                case 5:
+                    tradingPlatform.Calc_total_ordres_passes();
+                    break;
+                default:
+                    System.out.println("invalid Input !!");
+                    break;
+
+            }
+        }while(choice != 0);
+
+
+    }
 
     // ADMIN MENU
     public static void adminMenu() {
@@ -124,14 +168,7 @@ public class Main {
     }
     public static void main(String[] args) throws ParseException {
         //*********************************************
-        tradingPlatform.add_Trader();
-        tradingPlatform.add_Actif();
-        tradingPlatform.add_Actif();
-        tradingPlatform.deposit();
-        tradingPlatform.acheter_Actif();
-        tradingPlatform.acheter_Actif();
-        tradingPlatform.vendre_Actif();
-        tradingPlatform.Calc_total_ordres_passes();
+      x_Trade();
 
         //*********************************************
 
